@@ -1,7 +1,7 @@
 {
   "name": "@eardi/react-scroll-tab",
   "homepage": "http://ardeshireshghi.github.io/react-scroll-tab",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A simple React tab component with scrollable tab content",
   "keywords": [],
   "main": "src/index.js",

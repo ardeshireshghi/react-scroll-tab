@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 const TabPanel = ({ value, children }) => {
   const panelRef = useRef(null);
