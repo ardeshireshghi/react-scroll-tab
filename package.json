@@ -1,0 +1,43 @@
+{
+  "name": "react-scroll-tab",
+  "homepage": "http://ardeshireshghi.github.io/react-scroll-tab",
+  "version": "0.0.1",
+  "description": "A simple React tab component with scrollable tab content",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "styled-components": "5.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/addon-actions": "^6.1.11",
+    "@storybook/addon-essentials": "^6.1.11",
+    "@storybook/addon-links": "^6.1.11",
+    "@storybook/react": "^6.1.11",
+    "babel-loader": "^8.2.2",
+    "gh-pages": "^3.1.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "3.4.3"
+  },
+  "peerDependencies": {
+    "react": "16.x"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "predeploy-storybook": "yarn run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
