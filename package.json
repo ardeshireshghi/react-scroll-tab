@@ -27,7 +27,7 @@
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint src",
-    "test:unit": "react-scripts test --env=jsdom",
+    "test:unit": "SKIP_PREFLIGHT_CHECK=true react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "format:check": "prettier --list-different \"src/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "format:write": "prettier --write \"src/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
@@ -44,7 +44,6 @@
     "@storybook/addon-links": "^6.1.11",
     "@storybook/react": "^6.1.11",
     "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.2.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",
@@ -61,7 +60,8 @@
     "prettier": "^2.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "babel-loader": "^8.2.2"
   },
   "files": [
     "dist"

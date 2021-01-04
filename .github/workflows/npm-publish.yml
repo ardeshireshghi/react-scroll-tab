@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}" && yarn publish --access=public
+      - run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}" && yarn install && yarn publish --access=public
         env:
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
 
