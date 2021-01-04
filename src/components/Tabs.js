@@ -4,7 +4,8 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
+  Fragment
 } from 'react';
 
 import PropTypes from 'prop-types';
@@ -95,7 +96,7 @@ const Tabs = ({ children, onChange, variant, theme, value }) => {
   );
 
   return (
-    <>
+    <Fragment>
       <ThemeProvider theme={mergedTheme}>
         <StyledTabs variant={variant}>
           {!tabsHaveBorderRadius && <TabBorder w={tabBorderStyle.width} />}
@@ -108,7 +109,7 @@ const Tabs = ({ children, onChange, variant, theme, value }) => {
           )}
         </StyledTabs>
       </ThemeProvider>
-    </>
+    </Fragment>
   );
 };
 

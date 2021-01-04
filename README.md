@@ -8,7 +8,7 @@ A simple React tab component with scrollable tab content
 
 ## Install
 
-`react-scroll-tab` requires Node.js version 12 or greater and React 16.
+`react-scroll-tab` requires Node.js version 10 or greater and React 16.
 
 ```bash
 # npm
@@ -19,6 +19,8 @@ yarn add @eardi/react-scroll-tab
 ```
 
 ## Usage
+
+### Default usage
 
 ```jsx
 import React from 'react';
@@ -52,7 +54,7 @@ function Page() {
 }
 ```
 
-### Use Custom Theme
+### Usage with Custom Theme
 
 The component is themeable. Below are the defined theme variables:
 
@@ -97,6 +99,65 @@ function Page() {
 }
 ```
 
+### Usage with Swipeable tabs
+
+This should be mainly used for mobile views as swiping on mobile and touch devices is more friendly than scrolling. This wraps [react-swipeable-views](https://react-swipeable-views.com/) so you can use the documentation there.
+
+```jsx
+import React from 'react';
+import { Tabs, Tab, TabSwipeableContent } from '@eardi/react-scroll-tab';
+
+const INITIAL_TAB_VALUE = 0;
+
+function Page() {
+  const [selectedTab, setSelectedTab] = useState(INITIAL_TAB_VALUE);
+
+  return (
+    <>
+      <Tabs variant='fullWidth' value={selectedTab} onChange={setSelectedTab}>
+        <Tab>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
+        <Tab>Tab 3</Tab>
+      </Tabs>
+      <TabSwipeableContent index={selectedTab} onChangeIndex={setSelectedTab}>
+        <div>
+          <h2>Tab 1 content</h2>
+          <h3>
+            Non do sint occaecat aliqua culpa culpa laboris tempor amet veniam
+            et duis.
+          </h3>
+          <p>
+            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
+            quis enim est deserunt irure esse veniam. Commodo enim tempor do in.
+          </p>
+        </div>
+        <div>
+          <h2>Tab 2 content</h2>
+          <h3>
+            Non do sint occaecat aliqua culpa culpa laboris tempor amet veniam
+            et duis.
+          </h3>
+          <p>
+            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
+            quis enim est deserunt irure esse veniam. Commodo enim tempor do in.
+          </p>
+        </div>
+        <div>
+          <h2>Tab 3 content</h2>
+          <h3>
+            Non do sint occaecat aliqua culpa culpa laboris tempor amet veniam
+            et duis.
+          </h3>
+          <p>
+            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
+            quis enim est deserunt irure esse veniam. Commodo enim tempor do in.
+          </p>
+        </div>
+      </TabSwipeableContent>
+    </>
+  );
+}
+```
 ## Demo
 
 [Storybook](https://ardeshireshghi.github.io/react-scroll-tab/?path=/story/tabs--full-width)
