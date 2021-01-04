@@ -28,15 +28,19 @@ const StyledTabs = styled.div`
   -webkit-overflow-scrolling: touch;
   justify-content: ${(props) =>
     props.variant === 'center' ? 'center' : 'normal'};
-  &:before {
-    content: ' ';
-    width: 100%;
-    height: 0;
-    border-bottom: 2px solid ${(props) => props.theme.tabBorderBottomColor};
-    position: absolute;
-    bottom: 0px;
-  }
 `;
+
+const TabBorder = styled.div`
+  width: ${(props) => `${props.w}px`};
+  height: 0;
+  border-bottom: 2px solid ${(props) => props.theme.tabBorderBottomColor};
+  position: absolute;
+  bottom: 0px;
+`;
+
+TabBorder.defaultProps = {
+  w: 0
+};
 
 const createSmartResizeHandler = (handlerFn) => {
   let timer;
@@ -53,28 +57,28 @@ const createSmartResizeHandler = (handlerFn) => {
 };
 const Tabs = ({ children, onChange, variant, theme, value }) => {
   const [indicatorStyle, setIndicatorStyle] = useState({});
+  const [tabBorderStyle, setTabBorderStyle] = useState({});
   const tabRefs = useRef([]);
 
   const mergedTheme = { ...DEFAULT_THEME, ...theme };
   useEffect(() => {
     const selectedTabRef = tabRefs.current[value];
-    const handleResize = createSmartResizeHandler(() => {
+    const updateStyles = () => {
       if (selectedTabRef) {
         setIndicatorStyle({
           width: selectedTabRef.offsetWidth,
           translateX: selectedTabRef.offsetLeft
         });
+
+        setTabBorderStyle({
+          width: selectedTabRef.parentNode.scrollWidth
+        });
       }
-    });
-
-    if (selectedTabRef) {
-      setIndicatorStyle({
-        width: selectedTabRef.offsetWidth,
-        translateX: selectedTabRef.offsetLeft
-      });
-    }
-
+    };
+    const handleResize = createSmartResizeHandler(updateStyles);
     window.addEventListener('resize', handleResize);
+
+    updateStyles();
 
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -99,6 +103,7 @@ const Tabs = ({ children, onChange, variant, theme, value }) => {
     <>
       <ThemeProvider theme={mergedTheme}>
         <StyledTabs variant={variant}>
+          <TabBorder w={tabBorderStyle.width} />
           {tabs}
           <TabIndicator
             w={indicatorStyle.width}
@@ -123,4 +128,5 @@ Tabs.propTypes = {
   value: PropTypes.number,
   theme: PropTypes.shape({})
 };
+
 export default Tabs;
