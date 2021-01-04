@@ -15,9 +15,10 @@ import TabIndicator from './TabIndicator';
 const DEFAULT_THEME = {
   tabTextColor: '#333',
   tabSelectedTextColor: 'purple',
-  tabSelectedBgColor: 'rgb(128 0 128 / 29%)',
+  tabSelectedBgColor: 'rgba(128, 0, 128, 0.29)',
   tabIndicatorBgColor: 'purple',
-  tabFocusHoverBgColor: 'rgb(128 0 128 / 9%)'
+  tabFocusHoverBgColor: 'rgba(128, 0, 128, 0.09)',
+  tabBorderBottomColor: 'rgba(0, 0, 0, 0.05)'
 };
 
 const StyledTabs = styled.div`
@@ -27,6 +28,14 @@ const StyledTabs = styled.div`
   -webkit-overflow-scrolling: touch;
   justify-content: ${(props) =>
     props.variant === 'center' ? 'center' : 'normal'};
+  &:before {
+    content: ' ';
+    width: 100%;
+    height: 0;
+    border-bottom: 2px solid ${(props) => props.theme.tabBorderBottomColor};
+    position: absolute;
+    bottom: 0px;
+  }
 `;
 
 const createSmartResizeHandler = (handlerFn) => {

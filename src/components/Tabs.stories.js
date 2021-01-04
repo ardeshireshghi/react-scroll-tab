@@ -199,10 +199,10 @@ FullWidth.args = {
 Themed.args = {
   value: 0,
   theme: {
-    tabTextColor: 'lightgray',
-    tabSelectedTextColor: 'white',
-    tabSelectedBgColor: 'black',
-    tabIndicatorBgColor: 'transparent',
-    tabFocusHoverBgColor: 'rgb(0 0 0 / 50%)'
+    tabTextColor: 'black',
+    tabSelectedTextColor: 'black',
+    tabSelectedBgColor: 'white',
+    tabIndicatorBgColor: 'black',
+    tabFocusHoverBgColor: 'rgb(0 0 0 / 1%)'
   }
 };
