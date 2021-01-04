@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import Tab from './Tab';
 import Tabs from './Tabs';
 import TabScrollableContent from './TabScrollableContent';
@@ -8,28 +9,19 @@ import TabPanel from './TabPanel';
 const Wrapper = styled.div`
   font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
     Helvetica, Arial, 'Lucida Grande', sans-serif;
-  margin: 0 auto;
-  max-width: 800px;
 `;
 
 // This default export determines where your story goes in the story list
 export default {
   title: 'Tabs',
-  component: Tabs,
-  decorators: [
-    (Story) => (
-      <Wrapper>
-        <Story />
-      </Wrapper>
-    )
-  ]
+  component: Tabs
 };
 
 const Template = (args) => {
   const [selectedTab, setSelectedTab] = useState(args.value);
 
   return (
-    <>
+    <Wrapper>
       <Tabs {...args} value={selectedTab} onChange={setSelectedTab}>
         <Tab>Tab 1</Tab>
         <Tab>Tab 2</Tab>
@@ -178,13 +170,14 @@ const Template = (args) => {
           </p>
         </TabPanel>
       </TabScrollableContent>
-    </>
+    </Wrapper>
   );
 };
 
 export const Centered = Template.bind({});
 export const FullWidth = Template.bind({});
 export const Themed = Template.bind({});
+export const ThemeWithBorderRadius = Template.bind({});
 
 Centered.args = {
   variant: 'center',
@@ -201,8 +194,22 @@ Themed.args = {
   theme: {
     tabTextColor: 'black',
     tabSelectedTextColor: 'black',
+    tabFocusHoverColor: 'black',
     tabSelectedBgColor: 'white',
-    tabIndicatorBgColor: 'black',
+    tabIndicatorColor: 'black',
     tabFocusHoverBgColor: 'rgb(0 0 0 / 1%)'
+  }
+};
+
+ThemeWithBorderRadius.args = {
+  value: 0,
+  theme: {
+    tabTextColor: '#00b8a9',
+    tabSelectedTextColor: 'white',
+    tabSelectedBgColor: '#00ccbc',
+    tabFocusHoverBgColor: 'rgb(0 204 188 / 14%)',
+    tabFocusHoverColor: '#00b8a9',
+    tabBorderRadius: '16px',
+    tabGap: '0.5rem'
   }
 };

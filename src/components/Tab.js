@@ -22,9 +22,13 @@ const Tab = styled.button`
   &:hover,
   &:focus {
     background-color: ${(props) =>
-      props.selected ? props.theme.tabSelectedBgColor : props.theme.tabFocusHoverBgColor};
+      props.selected
+        ? props.theme.tabSelectedBgColor
+        : props.theme.tabFocusHoverBgColor};
     color: ${(props) =>
-      props.selected ? props.theme.tabSelectedTextColor : props.theme.tabFocusHoverColor};
+      props.selected
+        ? props.theme.tabSelectedTextColor
+        : props.theme.tabFocusHoverColor};
   }
 `;
 

@@ -11,12 +11,12 @@ import PropTypes from 'prop-types';
 
 import styled, { ThemeProvider } from 'styled-components';
 import TabIndicator from './TabIndicator';
-import { DEFAULT_THEME} from '../constants';
+import { DEFAULT_THEME } from '../constants';
 
 const StyledTabs = styled.div`
   display: flex;
   position: relative;
-  gap: ${props => props.theme.tabGap};
+  gap: ${(props) => props.theme.tabGap};
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   justify-content: ${(props) =>
