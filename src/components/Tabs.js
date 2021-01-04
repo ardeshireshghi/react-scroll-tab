@@ -11,19 +11,12 @@ import PropTypes from 'prop-types';
 
 import styled, { ThemeProvider } from 'styled-components';
 import TabIndicator from './TabIndicator';
-
-const DEFAULT_THEME = {
-  tabTextColor: '#333',
-  tabSelectedTextColor: 'purple',
-  tabSelectedBgColor: 'rgba(128, 0, 128, 0.29)',
-  tabIndicatorBgColor: 'purple',
-  tabFocusHoverBgColor: 'rgba(128, 0, 128, 0.09)',
-  tabBorderBottomColor: 'rgba(0, 0, 0, 0.05)'
-};
+import { DEFAULT_THEME} from '../constants';
 
 const StyledTabs = styled.div`
   display: flex;
   position: relative;
+  gap: ${props => props.theme.tabGap};
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   justify-content: ${(props) =>
@@ -33,7 +26,7 @@ const StyledTabs = styled.div`
 const TabBorder = styled.div`
   width: ${(props) => `${props.w}px`};
   height: 0;
-  border-bottom: 2px solid ${(props) => props.theme.tabBorderBottomColor};
+  border-bottom: 2px solid ${(props) => props.theme.tabListBorderBottomColor};
   position: absolute;
   bottom: 0px;
 `;
@@ -61,6 +54,8 @@ const Tabs = ({ children, onChange, variant, theme, value }) => {
   const tabRefs = useRef([]);
 
   const mergedTheme = { ...DEFAULT_THEME, ...theme };
+  const tabsHaveBorderRadius = mergedTheme.tabBorderRadius !== '0';
+
   useEffect(() => {
     const selectedTabRef = tabRefs.current[value];
     const updateStyles = () => {
@@ -103,12 +98,14 @@ const Tabs = ({ children, onChange, variant, theme, value }) => {
     <>
       <ThemeProvider theme={mergedTheme}>
         <StyledTabs variant={variant}>
-          <TabBorder w={tabBorderStyle.width} />
+          {!tabsHaveBorderRadius && <TabBorder w={tabBorderStyle.width} />}
           {tabs}
-          <TabIndicator
-            w={indicatorStyle.width}
-            translateX={indicatorStyle.translateX}
-          />
+          {!tabsHaveBorderRadius && (
+            <TabIndicator
+              w={indicatorStyle.width}
+              translateX={indicatorStyle.translateX}
+            />
+          )}
         </StyledTabs>
       </ThemeProvider>
     </>
