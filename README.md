@@ -4,7 +4,7 @@ A simple React tab component with scrollable tab content
 
 > Made with create-react-library
 
-[![NPM](https://img.shields.io/npm/v/react-scroll-tab.svg)](https://www.npmjs.com/package/@eardi/react-scroll-tab)
+[![NPM](https://img.shields.io/npm/v/@eardi/react-scroll-tab.svg)](https://www.npmjs.com/package/@eardi/react-scroll-tab)
 
 ## Install
 
