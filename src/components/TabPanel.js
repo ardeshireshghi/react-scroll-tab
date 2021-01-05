@@ -6,7 +6,10 @@ const TabPanel = ({ value, children }) => {
 
   useEffect(() => {
     const scrollableContentEl = panelRef.current.parentNode;
-    const panelIndex = [].indexOf.call(scrollableContentEl.children, panelRef.current);
+    const panelIndex = [].indexOf.call(
+      scrollableContentEl.children,
+      panelRef.current
+    );
 
     if (value === panelIndex) {
       panelRef.current.parentNode.scrollTo(0, panelRef.current.offsetTop);

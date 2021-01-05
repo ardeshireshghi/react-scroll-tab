@@ -19,16 +19,18 @@ const Tab = styled.button`
   transition: background-color 0.35s ease;
   will-change: background-color;
 
-  &:hover,
-  &:focus {
-    background-color: ${(props) =>
-      props.selected
-        ? props.theme.tabSelectedBgColor
-        : props.theme.tabFocusHoverBgColor};
-    color: ${(props) =>
-      props.selected
-        ? props.theme.tabSelectedTextColor
-        : props.theme.tabFocusHoverColor};
+  @media (hover: hover) {
+    &:hover,
+    &:focus {
+      background-color: ${(props) =>
+        props.selected
+          ? props.theme.tabSelectedBgColor
+          : props.theme.tabFocusHoverBgColor};
+      color: ${(props) =>
+        props.selected
+          ? props.theme.tabSelectedTextColor
+          : props.theme.tabFocusHoverColor};
+    }
   }
 `;
 
