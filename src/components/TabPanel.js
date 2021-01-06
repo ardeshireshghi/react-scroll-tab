@@ -15,6 +15,7 @@ const TabPanel = ({ value, children }) => {
       panelRef.current.parentNode.scrollTo(0, panelRef.current.offsetTop);
     }
   }, [value]);
+
   return <div ref={panelRef}>{children}</div>;
 };
 

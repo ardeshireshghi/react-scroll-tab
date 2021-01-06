@@ -21,158 +21,45 @@ export default {
   component: Tabs
 };
 
+const renderTabs = (count) => {
+  return [...Array(count)].map((_, index) => (
+    <Tab key={index}>Tab {index + 1}</Tab>
+  ));
+};
+
+const renderTabPanels = (count) => {
+  return [...Array(count)].map((_, index) => (
+    <TabPanel key={index}>
+      <h2>Tab {index + 1} content</h2>
+      <h3>
+        Non do sint occaecat aliqua culpa culpa laboris tempor amet veniam et
+        duis.
+      </h3>
+      <p>
+        Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
+        quis enim est deserunt irure esse veniam. Commodo enim tempor do in
+        ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat qui
+        duis incididunt non. Pariatur consectetur aliquip laboris ex fugiat anim
+        nisi excepteur nisi reprehenderit anim adipisicing id. Exercitation
+        eiusmod magna Lorem quis minim esse.
+      </p>
+    </TabPanel>
+  ));
+};
+
 const Template = (args) => {
   const [selectedTab, setSelectedTab] = useState(args.value);
 
   return (
     <Wrapper>
       <Tabs {...args} value={selectedTab} onChange={setSelectedTab}>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
-        <Tab>Tab 4</Tab>
-        <Tab>Tab 5</Tab>
-        <Tab>Tab 6</Tab>
-        <Tab>Tab 7</Tab>
-        <Tab>Tab 8</Tab>
-        <Tab>Tab 9</Tab>
+        {renderTabs(args.tabCount)}
       </Tabs>
-      <TabScrollableContent>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 1 content</h2>
-          <h3>
-            Non do sint occaecat aliqua culpa culpa laboris tempor amet veniam
-            et duis.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 2 content</h2>
-          <h3>
-            Deserunt dolore reprehenderit dolore Lorem irure fugiat do do in
-            incididunt cupidatat id.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 3 content</h2>
-          <h3>
-            Velit nulla ullamco cillum labore aliquip velit pariatur
-            consectetur.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 4 content</h2>
-          <h3>
-            Velit nulla ullamco cillum labore aliquip velit pariatur
-            consectetur.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 5 content</h2>
-          <h3>
-            Velit nulla ullamco cillum labore aliquip velit pariatur
-            consectetur.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 6 content</h2>
-          <h3>
-            Velit nulla ullamco cillum labore aliquip velit pariatur
-            consectetur.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 7 content</h2>
-          <h3>
-            Velit nulla ullamco cillum labore aliquip velit pariatur
-            consectetur.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 8 content</h2>
-          <h3>
-            Velit nulla ullamco cillum labore aliquip velit pariatur
-            consectetur.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
-        <TabPanel value={selectedTab}>
-          <h2>Tab 9 content</h2>
-          <h3>
-            Velit nulla ullamco cillum labore aliquip velit pariatur
-            consectetur.
-          </h3>
-          <p>
-            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
-            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
-            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
-            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
-            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
-            Exercitation eiusmod magna Lorem quis minim esse.
-          </p>
-        </TabPanel>
+      <TabScrollableContent
+        value={selectedTab}
+        onScrollChangeIndex={setSelectedTab}
+      >
+        {renderTabPanels(args.tabCount)}
       </TabScrollableContent>
     </Wrapper>
   );
@@ -275,18 +162,28 @@ export const Centered = Template.bind({});
 export const FullWidth = Template.bind({});
 export const Themed = Template.bind({});
 export const ThemeWithBorderRadius = Template.bind({});
+export const Virtualised = Template.bind({});
 
 Centered.args = {
+  tabCount: 9,
   variant: 'center',
   value: 0
 };
 
 FullWidth.args = {
+  tabCount: 9,
   variant: 'fullWidth',
-  value: 1
+  value: 0
+};
+
+Virtualised.args = {
+  tabCount: 1000,
+  variant: 'fullWidth',
+  value: 0
 };
 
 Themed.args = {
+  tabCount: 9,
   value: 0,
   theme: {
     tabTextColor: 'black',
@@ -299,6 +196,7 @@ Themed.args = {
 };
 
 ThemeWithBorderRadius.args = {
+  tabCount: 9,
   value: 0,
   theme: {
     tabTextColor: '#00b8a9',

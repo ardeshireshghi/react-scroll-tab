@@ -23,9 +23,9 @@ const TabViewWithScroll = ({ onChange }) => {
         <Tab id='tab1'>Tab 1</Tab>
         <Tab id='tab2'>Tab 2</Tab>
       </Tabs>
-      <TabScrollableContent id='scrollable-content'>
-        <TabPanel value={currentTab}>Panel 1</TabPanel>
-        <TabPanel value={currentTab}>Panel 2</TabPanel>
+      <TabScrollableContent value={currentTab} id='scrollable-content'>
+        <TabPanel>Panel 1</TabPanel>
+        <TabPanel>Panel 2</TabPanel>
       </TabScrollableContent>
     </>
   );
