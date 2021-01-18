@@ -55,10 +55,7 @@ const Template = (args) => {
       <Tabs {...args} value={selectedTab} onChange={setSelectedTab}>
         {renderTabs(args.tabCount)}
       </Tabs>
-      <TabScrollableContent
-        value={selectedTab}
-        onScrollChangeIndex={setSelectedTab}
-      >
+      <TabScrollableContent value={selectedTab}>
         {renderTabPanels(args.tabCount)}
       </TabScrollableContent>
     </Wrapper>

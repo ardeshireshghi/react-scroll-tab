@@ -4,13 +4,14 @@ import React, {
   useEffect,
   Children,
   useState,
-  cloneElement,
-  useCallback
+  cloneElement
 } from 'react';
 import styled from 'styled-components';
+import { useDebounce } from '../hooks/useDebounce';
 
 const MAX_TABS_HEIGHT = 64;
 const MIN_PANELS_TO_RENDER = 5;
+const PANELS_RENDER_STEPS = 5;
 
 const StyledTabScrollableContent = styled.div`
   min-height: 50px;
@@ -38,17 +39,17 @@ const TabScrollableContent = ({ children, value, ...otherProps }) => {
   if (value > maxPanelToRender) {
     setMaxPanelRendered(value);
   }
-  const handleScroll = useCallback(
-    (e) => {
+  const handleScroll = useDebounce({
+    callback: (e) => {
       if (
-        e.target.scrollHeight ===
-        e.target.scrollTop + e.target.offsetHeight
+        e.target.scrollHeight >=
+        e.target.scrollTop + e.target.offsetHeight - 1
       ) {
-        setMaxPanelRendered((currentMax) => currentMax + 1);
+        setMaxPanelRendered((currentMax) => currentMax + PANELS_RENDER_STEPS);
       }
     },
-    [setMaxPanelRendered]
-  );
+    wait: 50
+  });
 
   useEffect(() => {
     const maxHeight = viewportHeight() - MAX_TABS_HEIGHT;
