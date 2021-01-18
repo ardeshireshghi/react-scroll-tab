@@ -40,11 +40,13 @@ const TabScrollableContent = ({ children, value, ...otherProps }) => {
     setMaxPanelRendered(value);
   }
   const handleScroll = useDebounce({
-    callback: (e) => {
-      if (
-        e.target.scrollHeight >=
-        e.target.scrollTop + e.target.offsetHeight - 1
-      ) {
+    cb(e) {
+      const reachedEndofScrollBar =
+        Math.abs(
+          e.target.scrollHeight - (e.target.scrollTop + e.target.offsetHeight)
+        ) < 1;
+
+      if (reachedEndofScrollBar) {
         setMaxPanelRendered((currentMax) => currentMax + PANELS_RENDER_STEPS);
       }
     },
