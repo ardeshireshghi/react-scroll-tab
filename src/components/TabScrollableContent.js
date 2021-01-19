@@ -33,6 +33,7 @@ const viewportHeight = () =>
 const TabScrollableContent = ({ children, value, ...otherProps }) => {
   const scrollableEl = useRef(null);
   const [scrollableContentHeight, setScrollableContentHeight] = useState(0);
+  const [shouldForceScroll, setShouldForceScroll] = useState(false);
   const [panelRangeToRender, setPanelRangeToRender] = useState([
     Math.max(0, value - PANEL_RANGE_COUNT),
     value + PANEL_RANGE_COUNT
@@ -62,22 +63,18 @@ const TabScrollableContent = ({ children, value, ...otherProps }) => {
   });
 
   useEffect(() => {
-    if (
-      value + PANEL_RANGE_COUNT >
-      panelRangeToRender[PANEL_RANGE_UPPER_INDEX]
-    ) {
+    if (value > panelRangeToRender[PANEL_RANGE_UPPER_INDEX]) {
       setPanelRangeToRender(([currentMin, _]) => [
         currentMin,
         value + PANEL_RANGE_COUNT
       ]);
-    } else if (
-      value - PANEL_RANGE_COUNT <
-      panelRangeToRender[PANEL_RANGE_LOWER_INDEX]
-    ) {
+    } else if (value < panelRangeToRender[PANEL_RANGE_LOWER_INDEX]) {
       setPanelRangeToRender(([_, currentMax]) => [
         Math.max(0, value - PANEL_RANGE_COUNT),
         currentMax
       ]);
+
+      setShouldForceScroll(true);
     }
   }, [value, setPanelRangeToRender]);
 
@@ -121,6 +118,11 @@ const TabScrollableContent = ({ children, value, ...otherProps }) => {
           return cloneElement(child, {
             index: index + panelRangeToRender[PANEL_RANGE_LOWER_INDEX],
             key: index + panelRangeToRender[PANEL_RANGE_LOWER_INDEX],
+            shouldForceScroll:
+              index + panelRangeToRender[PANEL_RANGE_LOWER_INDEX] === value
+                ? shouldForceScroll
+                : false,
+            setShouldForceScroll,
             value
           });
         })}
