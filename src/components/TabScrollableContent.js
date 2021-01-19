@@ -9,9 +9,10 @@ import React, {
 import styled from 'styled-components';
 import { useDebounce } from '../hooks/useDebounce';
 
-const MAX_TABS_HEIGHT = 64;
-const MIN_PANELS_TO_RENDER = 5;
-const PANELS_RENDER_STEPS = 5;
+const TABS_SECTION_HEIGHT = 64;
+const PANEL_RANGE_COUNT = 5;
+const PANEL_RANGE_LOWER_INDEX = 0;
+const PANEL_RANGE_UPPER_INDEX = 1;
 
 const StyledTabScrollableContent = styled.div`
   min-height: 50px;
@@ -32,13 +33,11 @@ const viewportHeight = () =>
 const TabScrollableContent = ({ children, value, ...otherProps }) => {
   const scrollableEl = useRef(null);
   const [scrollableContentHeight, setScrollableContentHeight] = useState(0);
-  const [maxPanelToRender, setMaxPanelRendered] = useState(
-    Math.max(MIN_PANELS_TO_RENDER, value)
-  );
+  const [panelRangeToRender, setPanelRangeToRender] = useState([
+    Math.max(0, value - PANEL_RANGE_COUNT),
+    value + PANEL_RANGE_COUNT
+  ]);
 
-  if (value > maxPanelToRender) {
-    setMaxPanelRendered(value);
-  }
   const handleScroll = useDebounce({
     cb(e) {
       const reachedEndofScrollBar =
@@ -47,20 +46,64 @@ const TabScrollableContent = ({ children, value, ...otherProps }) => {
         ) < 1;
 
       if (reachedEndofScrollBar) {
-        setMaxPanelRendered((currentMax) => currentMax + PANELS_RENDER_STEPS);
+        setPanelRangeToRender(([currentMin, currentMax]) => [
+          currentMin,
+          currentMax + PANEL_RANGE_COUNT
+        ]);
+      } else if (e.target.scrollTop === 0) {
+        e.target.setAttribute('previous-scroll-height', e.target.scrollHeight);
+        setPanelRangeToRender(([currentMin, currentMax]) => [
+          Math.max(0, currentMin - PANEL_RANGE_COUNT),
+          currentMax
+        ]);
       }
     },
     wait: 50
   });
 
   useEffect(() => {
-    const maxHeight = viewportHeight() - MAX_TABS_HEIGHT;
+    if (
+      value + PANEL_RANGE_COUNT >
+      panelRangeToRender[PANEL_RANGE_UPPER_INDEX]
+    ) {
+      setPanelRangeToRender(([currentMin, _]) => [
+        currentMin,
+        value + PANEL_RANGE_COUNT
+      ]);
+    } else if (
+      value - PANEL_RANGE_COUNT <
+      panelRangeToRender[PANEL_RANGE_LOWER_INDEX]
+    ) {
+      setPanelRangeToRender(([_, currentMax]) => [
+        Math.max(0, value - PANEL_RANGE_COUNT),
+        currentMax
+      ]);
+    }
+  }, [value, setPanelRangeToRender]);
+
+  useEffect(() => {
+    const maxHeight = viewportHeight() - TABS_SECTION_HEIGHT;
 
     if (scrollableContentHeight < maxHeight) {
       const currentContentHeight = scrollableEl.current.scrollHeight - 1;
       setScrollableContentHeight(Math.min(maxHeight, currentContentHeight));
     }
-  }, [maxPanelToRender]);
+
+    // Scroll back to the first visible element after reaching beginning of scroll
+    if (scrollableEl.current.hasAttribute('previous-scroll-height')) {
+      const prevScrollHeight = scrollableEl.current.getAttribute(
+        'previous-scroll-height'
+      );
+      scrollableEl.current.removeAttribute('previous-scroll-height');
+
+      scrollableEl.current.style.setProperty('scroll-behavior', 'auto');
+      scrollableEl.current.scrollTo(
+        0,
+        scrollableEl.current.scrollHeight - prevScrollHeight
+      );
+      scrollableEl.current.style.removeProperty('scroll-behavior');
+    }
+  }, [panelRangeToRender]);
 
   return (
     <StyledTabScrollableContent
@@ -70,10 +113,14 @@ const TabScrollableContent = ({ children, value, ...otherProps }) => {
       {...otherProps}
     >
       {Children.toArray(children)
-        .slice(0, maxPanelToRender + 1)
+        .slice(
+          panelRangeToRender[PANEL_RANGE_LOWER_INDEX],
+          panelRangeToRender[PANEL_RANGE_UPPER_INDEX] + 1
+        )
         .map((child, index) => {
           return cloneElement(child, {
-            key: index,
+            index: index + panelRangeToRender[PANEL_RANGE_LOWER_INDEX],
+            key: index + panelRangeToRender[PANEL_RANGE_LOWER_INDEX],
             value
           });
         })}

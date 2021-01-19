@@ -70,6 +70,8 @@ const Tabs = ({ children, onChange, variant, theme, value }) => {
           width: selectedTabRef.parentNode.scrollWidth
         });
       }
+
+      selectedTabRef.focus();
     };
     const handleResize = createSmartResizeHandler(updateStyles);
     window.addEventListener('resize', handleResize);

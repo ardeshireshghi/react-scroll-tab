@@ -73,6 +73,10 @@ const SwipeableTemplate = () => {
         <Tab>Tab 3</Tab>
         <Tab>Tab 4</Tab>
         <Tab>Tab 5</Tab>
+        <Tab>Tab 6</Tab>
+        <Tab>Tab 7</Tab>
+        <Tab>Tab 8</Tab>
+        <Tab>Tab 9</Tab>
       </Tabs>
       <TabSwipeableContent index={selectedTab} onChangeIndex={setSelectedTab}>
         <div>
@@ -150,6 +154,66 @@ const SwipeableTemplate = () => {
             Exercitation eiusmod magna Lorem quis minim esse.
           </p>
         </div>
+        <div>
+          <h2>Tab 6 content</h2>
+          <h3>
+            Velit nulla ullamco cillum labore aliquip velit pariatur
+            consectetur.
+          </h3>
+          <p>
+            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
+            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
+            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
+            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
+            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
+            Exercitation eiusmod magna Lorem quis minim esse.
+          </p>
+        </div>
+        <div>
+          <h2>Tab 7 content</h2>
+          <h3>
+            Velit nulla ullamco cillum labore aliquip velit pariatur
+            consectetur.
+          </h3>
+          <p>
+            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
+            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
+            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
+            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
+            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
+            Exercitation eiusmod magna Lorem quis minim esse.
+          </p>
+        </div>
+        <div>
+          <h2>Tab 8 content</h2>
+          <h3>
+            Velit nulla ullamco cillum labore aliquip velit pariatur
+            consectetur.
+          </h3>
+          <p>
+            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
+            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
+            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
+            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
+            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
+            Exercitation eiusmod magna Lorem quis minim esse.
+          </p>
+        </div>
+        <div>
+          <h2>Tab 9 content</h2>
+          <h3>
+            Velit nulla ullamco cillum labore aliquip velit pariatur
+            consectetur.
+          </h3>
+          <p>
+            Elit do qui excepteur reprehenderit ex irure officia pariatur. Nulla
+            quis enim est deserunt irure esse veniam. Commodo enim tempor do in
+            ullamco sunt ipsum. Nisi veniam minim enim laborum nostrud consequat
+            qui duis incididunt non. Pariatur consectetur aliquip laboris ex
+            fugiat anim nisi excepteur nisi reprehenderit anim adipisicing id.
+            Exercitation eiusmod magna Lorem quis minim esse.
+          </p>
+        </div>
       </TabSwipeableContent>
     </Wrapper>
   );
@@ -176,7 +240,7 @@ FullWidth.args = {
 Virtualised.args = {
   tabCount: 1000,
   variant: 'fullWidth',
-  value: 0
+  value: 299
 };
 
 Themed.args = {

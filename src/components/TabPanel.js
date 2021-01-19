@@ -1,20 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 
-const TabPanel = ({ value, children }) => {
+const TabPanel = ({ index, value, children }) => {
   const panelRef = useRef(null);
 
   useEffect(() => {
-    const scrollableContentEl = panelRef.current.parentNode;
-    const panelIndex = [].indexOf.call(
-      scrollableContentEl.children,
-      panelRef.current
-    );
-
-    if (value === panelIndex) {
+    if (value === index) {
       panelRef.current.parentNode.scrollTo(0, panelRef.current.offsetTop);
     }
-  }, [value]);
+  }, [index, value]);
 
   return <div ref={panelRef}>{children}</div>;
 };
